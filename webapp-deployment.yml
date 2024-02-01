@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+        - name: webapp
+          image: your-webapp-image
+          env:
+            - name: DATABASE_URL
+              value: "sqlite3:/db/your_database_name.sqlite3"
+          ports:
+            - containerPort: 3000
+              

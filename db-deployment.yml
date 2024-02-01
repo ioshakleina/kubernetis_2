@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+        - name: db
+          image: your-db-image  # Use an appropriate SQLite3 image if available
+          env:
+            - name: DATABASE_URL
+              value: "sqlite3:/db/your_database_name.sqlite3"
+          ports:
+            - containerPort: 5432
+              
